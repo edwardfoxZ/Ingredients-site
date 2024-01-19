@@ -1,0 +1,24 @@
+#color_site {
+    background-color: #166117;
+}
+
+a {
+    text-decoration: none;
+}
+
+.Navbar {
+    position: fixed;
+    z-index: 1030;
+}
+
+.landing-page {
+    display: block;
+    margin-top: 10rem;
+}
+
+.form-control{
+    width: 45%;
+    height: 40%;
+    border-radius: 25px;
+}
+

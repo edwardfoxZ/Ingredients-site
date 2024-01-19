@@ -1,0 +1,19 @@
+.Card {
+    width: 21.8rem;
+
+}
+
+.Img-card {
+    max-width: 350px;
+    min-height: 530px;
+}
+
+.line_overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Pointer {
+    cursor: pointer;
+}
