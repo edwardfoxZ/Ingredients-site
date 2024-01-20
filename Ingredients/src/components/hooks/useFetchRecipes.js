@@ -1,6 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+const options = {
+    method: 'GET',
+    url: 'https://tasty.p.rapidapi.com/recipes/list',
+    params: {
+      from: '0',
+      size: '20',
+      tags: 'under_30_minutes'
+    },
+    headers: {
+      'X-RapidAPI-Key': '2fd7e699b5msh852ada5b65a16ddp155123jsn7ecaa147b6e3',
+      'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+    }
+  };
 
 const useFetchRecipes = () => {
     
@@ -20,22 +33,15 @@ const useFetchRecipes = () => {
         setError(null)
         setRecipes(null)
 
-        const reqOptions = {
-          url: 'http://localhost:5000/api/ingredients',
-          params: {
-              search: searchTerm,  // Pass the search term as a query parameter
-          },
-        };
-
-        if (searchTerm){
-          reqOptions.params.name = searchTerm;
-        }
-
         try {
-            const response = await axios.get(reqOptions.url, { params: reqOptions.params });
-            setRecipes(response.data.ingredients)
+            const reqOptions = {...options}
+            if (searchTerm){
+                reqOptions.params.q = searchTerm;
+              }
+            const response = await axios.request(reqOptions);
+            setRecipes(response.data.results)
             setLoading(false)
-            setError(false)
+
         } catch (err) {
             setError(err.message)
             setLoading(false)
